@@ -80,6 +80,7 @@
       gap: 6px;
       box-shadow: var(--shadow);
       position: relative;
+      min-width: 0;
     }
 
     .cat-dropdown {
@@ -94,12 +95,14 @@
       padding: 10px 4px;
       position: relative;
       user-select: none;
+      flex-shrink: 0;
     }
 
     .cat-dropdown svg {
       width: 14px;
       height: 14px;
       transition: transform 0.2s;
+      flex-shrink: 0;
     }
 
     .cat-dropdown.open svg {
@@ -110,10 +113,12 @@
       width: 1px;
       height: 22px;
       background: #d0d7e2;
+      flex-shrink: 0;
     }
 
     .search-bar input {
       flex: 1;
+      min-width: 0;
       border: none;
       outline: none;
       font-size: 13px;
@@ -894,6 +899,74 @@
       transform: translateY(0);
     }
 
+    /* ===== CONTACT LINK CARDS ===== */
+    .contact-card {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(26, 58, 107, 0.14);
+      border-color: var(--navy) !important;
+    }
+
+    /* ===== MOBILE FIXES ===== */
+    @media (max-width: 480px) {
+      .top-header {
+        padding: 12px 12px;
+        gap: 10px;
+      }
+
+      .logo-img {
+        height: 38px;
+      }
+
+      .search-bar {
+        padding: 0 3px 0 10px;
+        gap: 4px;
+      }
+
+      .cat-dropdown {
+        font-size: 11px;
+        padding: 8px 2px;
+        gap: 2px;
+        max-width: 78px;
+      }
+
+      .cat-dropdown #catLabel {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .cat-dropdown svg {
+        width: 11px;
+        height: 11px;
+      }
+
+      .search-bar input {
+        font-size: 12px;
+        padding: 8px 0;
+      }
+
+      .search-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .search-btn svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      .cat-panel {
+        min-width: 180px;
+      }
+    }
+
     /* ===== DESKTOP ===== */
     @media (min-width: 768px) {
       .top-header {
@@ -1141,30 +1214,31 @@
       <div class="section-title">Get in Touch</div>
       <div class="section-sub">We'd love to hear from you</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:8px;">
-        <div
+        <a href="tel:+919944473464" class="contact-card"
           style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
           <div style="font-size:24px;">📞</div>
           <div>
             <div style="font-size:11px;color:var(--text-mid);margin-bottom:3px;">Call Us</div>
-            <div style="font-size:13px;font-weight:700;color:var(--navy);">+91 98765 43210</div>
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">+91 9944473464</div>
           </div>
-        </div>
-        <div
+        </a>
+        <a href="mailto:hello@ural.in" class="contact-card"
           style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
           <div style="font-size:24px;">✉️</div>
           <div>
             <div style="font-size:11px;color:var(--text-mid);margin-bottom:3px;">Email Us</div>
             <div style="font-size:13px;font-weight:700;color:var(--navy);">hello@ural.in</div>
           </div>
-        </div>
-        <div
+        </a>
+        <a href="https://maps.google.com/maps/place//data=!4m2!3m1!1s0x3ba85be19b3448a7:0xb73ffdc49f122afa?entry=s&sa=X&ved=2ahUKEwjL3aGdx_-UAxU3SmcHHQqMFOQQ4kB6BAgYEAA&hl=en"
+          target="_blank" rel="noopener" class="contact-card"
           style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
           <div style="font-size:24px;">📍</div>
           <div>
             <div style="font-size:11px;color:var(--text-mid);margin-bottom:3px;">Visit Us</div>
             <div style="font-size:13px;font-weight:700;color:var(--navy);">Coimbatore, Tamil Nadu</div>
           </div>
-        </div>
+        </a>
       </div>
     </section>
 
