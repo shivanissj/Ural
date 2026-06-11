@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ural – Pure and Organic</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #1a3a6b;
+      --navy-dark: #12295a;
+      --navy-light: #2a4d8a;
+      --white: #ffffff;
+      --off-white: #f7f9fc;
+      --green: #3a8c3f;
+      --gold: #e8a020;
+      --text-dark: #1a1a2e;
+      --text-mid: #4a5568;
+      --radius-xl: 28px;
+      --shadow: 0 4px 24px rgba(26, 58, 107, 0.13);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--navy);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      background: var(--navy);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-wrap {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-svg {
+      width: 56px;
+      height: 48px;
+    }
+
+    /* Search bar */
+    .search-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 0 4px 0 14px;
+      gap: 6px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .cat-dropdown {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dark);
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 10px 4px;
+      position: relative;
+      user-select: none;
+    }
+
+    .cat-dropdown svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .cat-dropdown.open svg {
+      transform: rotate(180deg);
+    }
+
+    .search-divider {
+      width: 1px;
+      height: 22px;
+      background: #d0d7e2;
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-mid);
+      padding: 10px 0;
+      background: transparent;
+    }
+
+    .search-btn {
+      background: var(--navy);
+      border: none;
+      border-radius: 50px;
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .cat-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: -14px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(26, 58, 107, 0.18);
+      min-width: 210px;
+      z-index: 999;
+      overflow: hidden;
+      animation: fadeDown 0.18s ease;
+    }
+
+    .cat-panel.open {
+      display: block;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cat-panel a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 18px;
+      font-size: 13px;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.15s;
+      border-bottom: 1px solid #f0f2f5;
+      cursor: pointer;
+    }
+
+    .cat-panel a:last-child {
+      border-bottom: none;
+    }
+
+    .cat-panel a:hover {
+      background: #f0f6ff;
+      color: var(--navy);
+    }
+
+    .cat-icon-sm {
+      font-size: 17px;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* ===== SUB NAV ===== */
+    .sub-nav {
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-bottom: 1px solid #e8edf4;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      min-height: 60px;
+    }
+
+    .sub-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* HOME button — always blue box with icon */
+    .nav-home-btn {
+      background: var(--navy);
+      border: none;
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: white;
+      transition: background 0.2s;
+    }
+
+    .nav-home-btn:hover {
+      background: var(--navy-light);
+    }
+
+    /* NAV LINKS — text in flow for natural width, icon absolutely layered on top */
+    .nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      flex-shrink: 0;
+      padding: 0 10px;
+      height: 44px;
+    }
+
+    /* Default state: text in normal flow (determines the link width) */
+    .nav-link .nl-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+    }
+
+    /* Blue box with icon — absolutely positioned on top, no layout impact */
+    .nav-link .nl-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      background: var(--navy);
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    /* On hover: fade out text, fade in blue box */
+    .nav-link:hover .nl-text {
+      opacity: 0;
+    }
+
+    .nav-link:hover .nl-box {
+      opacity: 1;
+    }
+
+    /* ===== MAIN CARD ===== */
+    .main-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      margin: 16px 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== HERO SLIDER ===== */
+    .hero-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .slides-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide {
+      min-width: 100%;
+      min-height: 230px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+
+    .slide.active .slide-bg {
+      transform: scale(1);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(26, 58, 107, 0.78) 0%, rgba(26, 58, 107, 0.22) 65%, transparent 100%);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      padding: 32px 26px;
+      color: white;
+      max-width: 62%;
+    }
+
+    .slide-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a8d8aa;
+      margin-bottom: 7px;
+    }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 4.5vw, 32px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 9px;
+    }
+
+    .slide-sub {
+      font-size: 12px;
+      opacity: 0.88;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .slide-cta {
+      background: var(--gold);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .slide-cta:hover {
+      background: #c47d0a;
+      transform: scale(1.04);
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: width 0.3s, background 0.2s;
+    }
+
+    .dot.active {
+      background: white;
+      width: 22px;
+      border-radius: 4px;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.22);
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      color: white;
+      backdrop-filter: blur(4px);
+      font-size: 20px;
+      transition: background 0.2s;
+    }
+
+    .slider-arrow:hover {
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    .slider-arrow.prev {
+      left: 12px;
+    }
+
+    .slider-arrow.next {
+      right: 12px;
+    }
+
+    /* ===== SECTION BASE ===== */
+    .section {
+      padding: 26px 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .section-sub {
+      font-size: 12px;
+      color: var(--text-mid);
+      margin-bottom: 18px;
+    }
+
+    /* ===== CATEGORY CHIPS — always full width, evenly spaced ===== */
+    .cat-section {
+      padding: 22px 16px 0;
+    }
+
+    /* PHONE: 4-column grid → 2 rows of 4, each filling equal width */
+    .cat-chips-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px 0;
+      padding: 6px 0 16px;
+      overflow: visible;
+    }
+
+    .cat-chips-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-chip-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      padding: 0;
+      width: 100%;
+    }
+
+    .cat-chip-icon {
+      /* scales with viewport so circles grow on wider screens */
+      width: clamp(52px, 13vw, 68px);
+      height: clamp(52px, 13vw, 68px);
+      border-radius: 50%;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(22px, 5.5vw, 28px);
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      border: 2.5px solid transparent;
+    }
+
+    .cat-chip-btn:hover .cat-chip-icon {
+      transform: scale(1.12);
+      background: #e6efff;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 5px rgba(26, 58, 107, 0.12);
+    }
+
+    .cat-chip-btn.active .cat-chip-icon {
+      background: var(--navy);
+      border-color: var(--navy);
+      box-shadow: 0 0 0 5px rgba(26, 58, 107, 0.15);
+    }
+
+    .cat-chip-btn.active .cat-chip-icon span {
+      filter: brightness(10);
+    }
+
+    .cat-chip-btn span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-mid);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .cat-chip-btn.active span {
+      color: var(--navy);
+    }
+
+    /* TABLET+ (≥600px): 1 row of 8, still full-width grid */
+    @media (min-width: 600px) {
+      .cat-chips-row {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 12px 0;
+      }
+
+      .cat-chip-icon {
+        width: clamp(56px, 8vw, 72px);
+        height: clamp(56px, 8vw, 72px);
+        font-size: clamp(24px, 3.5vw, 30px);
+      }
+
+      .cat-chip-btn span {
+        font-size: 12px;
+      }
+    }
+
+
+
+    /* DESKTOP (≥1100px) */
+    @media (min-width: 1100px) {
+      .cat-section {
+        padding: 28px 48px 0;
+      }
+
+      .cat-chip-icon {
+        width: 72px;
+        height: 72px;
+        font-size: 30px;
+      }
+    }
+
+
+
+    /* ===== PRODUCTS SECTION ===== */
+    #products {
+      scroll-margin-top: 115px;
+    }
+
+    .products-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .active-cat-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      background: #eef2ff;
+      color: var(--navy);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .product-card {
+      border-radius: 16px;
+      background: var(--off-white);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      border: 1.5px solid #e8edf4;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(26, 58, 107, 0.14);
+    }
+
+    .product-emoji {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      background: #e8eef8;
+    }
+
+    .product-body {
+      padding: 13px;
+    }
+
+    .product-cat-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .product-weight {
+      font-size: 11px;
+      color: var(--text-mid);
+      margin-bottom: 7px;
+    }
+
+    .product-uses {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    .product-uses strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--gold);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 2px 8px;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-mid);
+      font-size: 14px;
+      grid-column: 1/-1;
+    }
+
+    /* ===== WHY US ===== */
+    .why-section {
+      background: var(--navy);
+      color: white;
+      padding: 36px 20px;
+      text-align: center;
+    }
+
+    .why-section .section-title {
+      color: white;
+    }
+
+    .why-section .section-sub {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .why-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .why-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.2s;
+    }
+
+    .why-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .why-icon {
+      font-size: 30px;
+    }
+
+    .why-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .why-desc {
+      font-size: 11px;
+      opacity: 0.72;
+      line-height: 1.55;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255, 255, 255, 0.72);
+      padding: 32px 20px 18px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+    }
+
+    .footer-brand {
+      grid-column: 1/-1;
+    }
+
+    @media (min-width: 600px) {
+      .footer-brand {
+        grid-column: auto;
+      }
+    }
+
+    .footer-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 9px;
+    }
+
+    .footer-tagline {
+      font-size: 12px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 9px;
+    }
+
+    .social-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      color: white;
+    }
+
+    .social-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 11px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.62);
+      text-decoration: none;
+      margin-bottom: 7px;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .footer-bottom span {
+      font-size: 11px;
+    }
+
+    /* ===== SCROLL TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(26, 58, 107, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 200;
+      font-size: 18px;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== DESKTOP ===== */
+    @media (min-width: 768px) {
+      .top-header {
+        padding: 16px 32px;
+      }
+
+      .slide {
+        min-height: 340px;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      body {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .top-header {
+        padding: 16px 48px;
+      }
+
+      .sub-nav {
+        padding: 0 48px;
+      }
+
+      .main-card {
+        margin: 20px 48px;
+      }
+
+      .slide {
+        min-height: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="top-header">
+    <a class="logo-wrap" href="#">
+      <svg class="logo-svg" viewBox="0 0 60 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="4" y="27" font-family="serif" font-size="22" font-weight="bold" font-style="italic"
+          fill="white">Ural</text>
+        <path d="M32 8 Q40 2 48 8 Q44 14 36 12 Z" fill="#4caf50" />
+        <path d="M36 12 Q42 10 46 16 Q40 18 34 15 Z" fill="#81c784" />
+        <text x="4" y="40" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,0.75)" letter-spacing="1">PURE
+          AND ORGANIC</text>
+      </svg>
+    </a>
+
+    <div class="search-bar">
+      <div class="cat-dropdown" id="catTrigger">
+        <span id="catLabel">All Categories</span>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="3,5 8,10 13,5" />
+        </svg>
+        <div class="cat-panel" id="catPanel">
+          <a onclick="selectCat('all','All Categories')"><span class="cat-icon-sm">🛒</span> All Categories</a>
+          <a onclick="selectCat('oils','Oils')"><span class="cat-icon-sm">🫙</span> Oils</a>
+          <a onclick="selectCat('health-drinks','Health Drinks')"><span class="cat-icon-sm">🥤</span> Health Drinks</a>
+          <a onclick="selectCat('jaggery','Jaggery')"><span class="cat-icon-sm">🍫</span> Jaggery</a>
+          <a onclick="selectCat('honey','Honey')"><span class="cat-icon-sm">🍯</span> Honey</a>
+          <a onclick="selectCat('spices','Spices')"><span class="cat-icon-sm">🌶️</span> Spices</a>
+          <a onclick="selectCat('grains','Grains &amp; Pulses')"><span class="cat-icon-sm">🌾</span> Grains &amp;
+            Pulses</a>
+          <a onclick="selectCat('dry-fruits','Dry Fruits')"><span class="cat-icon-sm">🥜</span> Dry Fruits</a>
+        </div>
+      </div>
+      <div class="search-divider"></div>
+      <input type="text" placeholder="Search for Items..." id="searchInput" oninput="handleSearch()" />
+      <button class="search-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- SUB NAV -->
+  <nav class="sub-nav">
+    <!-- Home: always blue box icon -->
+    <button class="nav-home-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </svg>
+    </button>
+
+    <!-- Products: text shown, on hover → blue box + grid icon -->
+    <a class="nav-link" href="#products">
+      <span class="nl-text">Products</span>
+      <span class="nl-box">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+      </span>
+    </a>
+
+    <!-- About Us: text shown, on hover → blue box + info icon -->
+    <a class="nav-link" href="#about">
+      <span class="nl-text">About Us</span>
+      <span class="nl-box">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="8" stroke-linecap="round" stroke-width="3" />
+          <line x1="12" y1="12" x2="12" y2="16" />
+        </svg>
+      </span>
+    </a>
+
+    <!-- Contact: text shown, on hover → blue box + phone icon -->
+    <a class="nav-link" href="#contact">
+      <span class="nl-text">Contact</span>
+      <span class="nl-box">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+          <path
+            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" />
+        </svg>
+      </span>
+    </a>
+  </nav>
+
+  <!-- MAIN CARD -->
+  <main class="main-card">
+
+    <!-- HERO SLIDER -->
+    <div class="hero-slider">
+      <div class="slides-track" id="slidesTrack">
+
+        <div class="slide active">
+          <div class="slide-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=900&q=80');">
+          </div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">100% Cold-Pressed</div>
+            <div class="slide-title">Nature's Finest Oils for Your Family</div>
+            <div class="slide-sub">Stone-milled, unrefined groundnut, sesame &amp; coconut oils — full of nutrients.
+            </div>
+            <a class="slide-cta" onclick="goToCategory('oils')">Explore Oils →</a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=900&q=80');"></div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">Ancient Sweetness</div>
+            <div class="slide-title">Pure Jaggery &amp; Natural Honey</div>
+            <div class="slide-sub">Unprocessed sweeteners that nourish every sip and bite with natural goodness.</div>
+            <a class="slide-cta" onclick="goToCategory('jaggery')">Explore Jaggery →</a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=900&q=80');">
+          </div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">Everyday Wellness</div>
+            <div class="slide-title">Health Drinks Packed with Goodness</div>
+            <div class="slide-sub">Moringa, Turmeric &amp; Herbal blends for immunity, energy and balance.</div>
+            <a class="slide-cta" onclick="goToCategory('health-drinks')">Explore Drinks →</a>
+          </div>
+        </div>
+
+      </div>
+      <button class="slider-arrow prev" onclick="prevSlide()">&#8249;</button>
+      <button class="slider-arrow next" onclick="nextSlide()">&#8250;</button>
+      <div class="slider-dots" id="sliderDots">
+        <div class="dot active" onclick="goSlide(0)"></div>
+        <div class="dot" onclick="goSlide(1)"></div>
+        <div class="dot" onclick="goSlide(2)"></div>
+      </div>
+    </div>
+
+    <!-- SEE PRODUCTS BY CATEGORY + PRODUCTS — connected as one section -->
+    <section class="cat-section reveal">
+      <div class="section-title">See Products by Category</div>
+      <div class="section-sub">Choose a category to filter the products below</div>
+      <div class="cat-chips-row" id="catChips">
+        <button class="cat-chip-btn active" onclick="filterChip('all',this)">
+          <div class="cat-chip-icon"><span>🌿</span></div><span>All</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('oils',this)">
+          <div class="cat-chip-icon"><span>🫙</span></div><span>Oils</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('health-drinks',this)">
+          <div class="cat-chip-icon"><span>🥤</span></div><span>Health Drinks</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('jaggery',this)">
+          <div class="cat-chip-icon"><span>🍫</span></div><span>Jaggery</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('honey',this)">
+          <div class="cat-chip-icon"><span>🍯</span></div><span>Honey</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('spices',this)">
+          <div class="cat-chip-icon"><span>🌶️</span></div><span>Spices</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('grains',this)">
+          <div class="cat-chip-icon"><span>🌾</span></div><span>Grains</span>
+        </button>
+        <button class="cat-chip-btn" onclick="filterChip('dry-fruits',this)">
+          <div class="cat-chip-icon"><span>🥜</span></div><span>Dry Fruits</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- PRODUCTS — flows directly below chips, no gap -->
+    <section class="section" id="products" style="padding-top:10px;">
+      <div class="active-cat-label" id="activeCatLabel">Showing: All Products</div>
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- ABOUT / WHY US -->
+    <section class="why-section reveal" id="about">
+      <div class="section-title">Why Choose Ural?</div>
+      <div class="section-sub">We believe food is medicine. Every product reflects that belief.</div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon">🌿</div>
+          <div class="why-title">100% Organic</div>
+          <div class="why-desc">No pesticides, no chemicals — only what nature intended for your family.</div>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">🏭</div>
+          <div class="why-title">Cold Pressed</div>
+          <div class="why-desc">Stone-mill &amp; cold-press methods preserve all vital nutrients intact.</div>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">🚜</div>
+          <div class="why-title">Farm Direct</div>
+          <div class="why-desc">Sourced from trusted organic farmers across Tamil Nadu and India.</div>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">✅</div>
+          <div class="why-title">Quality Tested</div>
+          <div class="why-desc">Every batch is tested for purity before it reaches your doorstep.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section reveal" id="contact"
+      style="background:var(--off-white); border-radius:0 0 var(--radius-xl) var(--radius-xl);">
+      <div class="section-title">Get in Touch</div>
+      <div class="section-sub">We'd love to hear from you</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:8px;">
+        <div
+          style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
+          <div style="font-size:24px;">📞</div>
+          <div>
+            <div style="font-size:11px;color:var(--text-mid);margin-bottom:3px;">Call Us</div>
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">+91 98765 43210</div>
+          </div>
+        </div>
+        <div
+          style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
+          <div style="font-size:24px;">✉️</div>
+          <div>
+            <div style="font-size:11px;color:var(--text-mid);margin-bottom:3px;">Email Us</div>
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">hello@ural.in</div>
+          </div>
+        </div>
+        <div
+          style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
+          <div style="font-size:24px;">📍</div>
+          <div>
+            <div style="font-size:11px;color:var(--text-mid);margin-bottom:3px;">Visit Us</div>
+            <div style="font-size:13px;font-weight:700;color:var(--navy);">Coimbatore, Tamil Nadu</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-text">Ural</div>
+        <div class="footer-tagline">Pure and Organic — delivering nature's finest oils, health drinks, jaggery and more
+          since 2018.</div>
+        <div class="footer-socials">
+          <a class="social-btn" href="#">📘</a>
+          <a class="social-btn" href="#">📸</a>
+          <a class="social-btn" href="#">🐦</a>
+          <a class="social-btn" href="#">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="#" onclick="goToCategory('oils')">Oils</a>
+        <a href="#" onclick="goToCategory('health-drinks')">Health Drinks</a>
+        <a href="#" onclick="goToCategory('jaggery')">Jaggery</a>
+        <a href="#" onclick="goToCategory('honey')">Honey</a>
+        <a href="#" onclick="goToCategory('spices')">Spices</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Ural Pure and Organic. All rights reserved.</span>
+      <span>Made with ❤️ in Tamil Nadu</span>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // ===== PRODUCTS DATA =====
+    const products = [
+      { id: 1, name: 'Cold Pressed Groundnut Oil', weight: '500ml / 1L', tag: 'oils', badge: 'Best Seller', icon: '🫙', uses: 'Rich in Vitamin E and antioxidants. Supports heart health, boosts immunity, and enhances the flavour of everyday cooking without losing nutrients.' },
+      { id: 2, name: 'Virgin Coconut Oil', weight: '500ml', tag: 'oils', badge: 'Organic', icon: '🥥', uses: 'Excellent for skin, hair and cooking. Contains medium-chain fatty acids that aid digestion and provide quick energy to the body.' },
+      { id: 3, name: 'Cold Pressed Sesame Oil', weight: '500ml', tag: 'oils', badge: '', icon: '🌿', uses: 'Known as the king of oils in Ayurveda. Anti-inflammatory properties, supports bone health and is ideal for oil pulling.' },
+      { id: 4, name: 'Wood Pressed Mustard Oil', weight: '500ml', tag: 'oils', badge: '', icon: '🟡', uses: 'Naturally pungent and warming. Aids circulation, repels insects on skin, and is traditionally used in massage and cooking.' },
+      { id: 5, name: 'Moringa Health Drink', weight: '200g', tag: 'health-drinks', badge: 'New', icon: '🥤', uses: 'Called the miracle tree — moringa is packed with iron, calcium and vitamins A, C &amp; E. Boosts energy and strengthens immunity.' },
+      { id: 6, name: 'Turmeric Latte Mix', weight: '150g', tag: 'health-drinks', badge: '', icon: '🌼', uses: 'Golden milk blend with turmeric, pepper and ginger. Powerful anti-inflammatory, aids sleep and supports liver detox.' },
+      { id: 7, name: 'Ashwagandha Herbal Blend', weight: '200g', tag: 'health-drinks', badge: '', icon: '💪', uses: 'An adaptogenic herb that reduces stress and anxiety, improves focus, builds stamina and supports hormonal balance.' },
+      { id: 8, name: 'Nannari Sharbat Mix', weight: '200g', tag: 'health-drinks', badge: '', icon: '🍃', uses: 'A traditional South Indian cooling drink. Purifies blood, reduces body heat, and relieves urinary disorders naturally.' },
+      { id: 9, name: 'Palm Jaggery Powder', weight: '500g', tag: 'jaggery', badge: 'Pure', icon: '🍫', uses: 'Rich in iron and minerals. A low glycemic index sweetener that aids digestion, prevents anaemia and cleans the respiratory tract.' },
+      { id: 10, name: 'Sugarcane Jaggery Block', weight: '1kg', tag: 'jaggery', badge: '', icon: '🟫', uses: 'Unrefined sugar with minerals intact. Helps in detoxing the body, improves digestion and is a healthier replacement for white sugar.' },
+      { id: 11, name: 'Forest Honey (Raw)', weight: '500g', tag: 'honey', badge: 'Wild', icon: '🍯', uses: 'Unprocessed wild honey with natural enzymes and pollen. Antibacterial, soothes coughs, boosts immunity and heals wounds.' },
+      { id: 12, name: 'Nilgiri Blossom Honey', weight: '300g', tag: 'honey', badge: '', icon: '🌺', uses: 'Harvested from Nilgiri flower fields. Light floral flavour, rich in antioxidants and promotes digestive health.' },
+      { id: 13, name: 'Organic Turmeric Powder', weight: '200g', tag: 'spices', badge: '', icon: '🌶️', uses: 'High curcumin content. Anti-inflammatory and antioxidant. Daily use supports joint health, immunity and skin glow.' },
+      { id: 14, name: 'Black Pepper Whole', weight: '100g', tag: 'spices', badge: '', icon: '🫙', uses: 'Enhances nutrient absorption (especially curcumin). Aids digestion, has antimicrobial properties and improves metabolism.' },
+      { id: 15, name: 'Organic Red Rice', weight: '1kg', tag: 'grains', badge: '', icon: '🌾', uses: 'High in anthocyanins and fibre. Manages blood sugar, supports gut health, aids weight management and is rich in iron.' },
+      { id: 16, name: 'Horse Gram (Kulthi Dal)', weight: '500g', tag: 'grains', badge: '', icon: '🫘', uses: 'One of the highest protein legumes. Helps dissolve kidney stones, controls diabetes and is used in traditional medicine.' },
+      { id: 17, name: 'Premium Cashews W320', weight: '250g', tag: 'dry-fruits', badge: '', icon: '🥜', uses: 'Rich in magnesium and zinc. Supports brain function, bone density, heart health and provides sustained energy.' },
+      { id: 18, name: 'Organic Almonds', weight: '250g', tag: 'dry-fruits', badge: '', icon: '🌰', uses: 'Loaded with Vitamin E and healthy fats. Improves memory, regulates blood sugar, and supports skin health naturally.' },
+    ];
+
+    let activeTag = 'all';
+    let searchQuery = '';
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const label = document.getElementById('activeCatLabel');
+
+      let filtered = activeTag === 'all' ? [...products] : products.filter(p => p.tag === activeTag);
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(p =>
+          p.name.toLowerCase().includes(q) ||
+          p.tag.toLowerCase().includes(q) ||
+          p.uses.toLowerCase().includes(q)
+        );
+      }
+
+      const catNames = { all: 'All Products', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices', grains: 'Grains & Pulses', 'dry-fruits': 'Dry Fruits' };
+      const suffix = searchQuery ? ` matching "${searchQuery}"` : '';
+      label.textContent = `Showing: ${catNames[activeTag] || 'All Products'}${suffix} (${filtered.length} item${filtered.length !== 1 ? 's' : ''})`;
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="no-results">No products found. Try a different search or category.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+    <div class="product-card">
+      ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+      <div class="product-emoji">${p.icon}</div>
+      <div class="product-body">
+        <div class="product-cat-tag">${p.tag.replace('-', ' ')}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-weight">Pack size: ${p.weight}</div>
+        <div class="product-uses"><strong>Benefits: </strong>${p.uses}</div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    // Category chip click (from the chips row — NO scroll, just filter in place)
+    function filterChip(tag, chipEl) {
+      activeTag = tag;
+      searchQuery = '';
+      document.getElementById('searchInput').value = '';
+      document.querySelectorAll('.cat-chip-btn').forEach(b => b.classList.remove('active'));
+      if (chipEl) chipEl.classList.add('active');
+      syncDropdownLabel(tag);
+      renderProducts();
+    }
+
+    // Called from slider CTAs / dropdown / footer links — filters AND scrolls to products
+    function goToCategory(tag) {
+      activeTag = tag;
+      searchQuery = '';
+      document.getElementById('searchInput').value = '';
+      // Sync chips
+      const tagToText = { all: 'All', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices', grains: 'Grains', 'dry-fruits': 'Dry Fruits' };
+      document.querySelectorAll('.cat-chip-btn').forEach(b => {
+        b.classList.toggle('active', b.querySelector('span:last-child').textContent === tagToText[tag]);
+      });
+      if (tag === 'all') document.querySelectorAll('.cat-chip-btn')[0].classList.add('active');
+      syncDropdownLabel(tag);
+      renderProducts();
+      setTimeout(() => document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+      return false;
+    }
+
+    function syncDropdownLabel(tag) {
+      const names = { all: 'All Categories', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices', grains: 'Grains & Pulses', 'dry-fruits': 'Dry Fruits' };
+      document.getElementById('catLabel').textContent = names[tag] || 'All Categories';
+    }
+
+    // Search
+    function handleSearch() {
+      searchQuery = document.getElementById('searchInput').value.trim();
+      renderProducts();
+      if (searchQuery) setTimeout(() => document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+    }
+
+    // Dropdown
+    function selectCat(tag, labelText) {
+      document.getElementById('catLabel').textContent = labelText;
+      document.getElementById('catPanel').classList.remove('open');
+      document.getElementById('catTrigger').classList.remove('open');
+      goToCategory(tag);
+    }
+    document.getElementById('catTrigger').addEventListener('click', function (e) {
+      e.stopPropagation();
+      this.classList.toggle('open');
+      document.getElementById('catPanel').classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      document.getElementById('catPanel').classList.remove('open');
+      document.getElementById('catTrigger').classList.remove('open');
+    });
+
+    // Slider
+    let currentSlide = 0;
+    const totalSlides = 3;
+    let autoInterval;
+    function goSlide(n) {
+      currentSlide = n;
+      document.getElementById('slidesTrack').style.transform = `translateX(-${n * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === n));
+      document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === n));
+      clearInterval(autoInterval);
+      autoInterval = setInterval(nextSlide, 4800);
+    }
+    function nextSlide() { goSlide((currentSlide + 1) % totalSlides); }
+    function prevSlide() { goSlide((currentSlide - 1 + totalSlides) % totalSlides); }
+    autoInterval = setInterval(nextSlide, 4800);
+
+    // Scroll top
+    window.addEventListener('scroll', () => {
+      document.getElementById('scrollTopBtn').classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    renderProducts();
+  </script>
+</body>
+
+</html>
