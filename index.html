@@ -498,7 +498,6 @@
     }
 
     .cat-chip-icon {
-      /* scales with viewport so circles grow on wider screens */
       width: clamp(52px, 13vw, 68px);
       height: clamp(52px, 13vw, 68px);
       border-radius: 50%;
@@ -540,7 +539,6 @@
       color: var(--navy);
     }
 
-    /* TABLET+ (≥600px): 1 row of 8, still full-width grid */
     @media (min-width: 600px) {
       .cat-chips-row {
         grid-template-columns: repeat(8, 1fr);
@@ -558,9 +556,6 @@
       }
     }
 
-
-
-    /* DESKTOP (≥1100px) */
     @media (min-width: 1100px) {
       .cat-section {
         padding: 28px 48px 0;
@@ -572,8 +567,6 @@
         font-size: 30px;
       }
     }
-
-
 
     /* ===== PRODUCTS SECTION ===== */
     #products {
@@ -623,6 +616,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
       position: relative;
       border: 1.5px solid #e8edf4;
+      cursor: pointer;
     }
 
     .product-card:hover {
@@ -639,7 +633,6 @@
       font-size: 52px;
       background: #e8eef8;
       overflow: hidden;
-      /* add this so images don't spill out */
     }
 
     .product-body {
@@ -657,7 +650,6 @@
 
     .product-emoji img {
       border-radius: 0;
-      /* optional, adjust if you want rounded corners */
     }
 
     .product-name {
@@ -705,6 +697,250 @@
       grid-column: 1/-1;
     }
 
+    /* ===== PRODUCT DETAIL PAGE (reusable template) ===== */
+    #productDetail {
+      display: none;
+    }
+
+    #productDetail.active {
+      display: block;
+    }
+
+    /* hide normal home sections while detail is open */
+    .home-section.hidden-by-detail {
+      display: none !important;
+    }
+
+    .pd-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      padding: 8px 4px 18px;
+    }
+
+    .pd-back svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .pd-back:hover {
+      text-decoration: underline;
+    }
+
+    .pd-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 0 20px 8px;
+    }
+
+    @media (min-width: 800px) {
+      .pd-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+        padding: 0 40px 8px;
+      }
+    }
+
+    .pd-image-wrap {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 90px;
+      border: 1.5px solid #e8edf4;
+    }
+
+    .pd-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pd-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .pd-cat-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .pd-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .pd-weight {
+      display: inline-block;
+      background: #eef2ff;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 5px 14px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+
+    .pd-tagline {
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .pd-highlight-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pd-highlight-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--off-white);
+      border: 1px solid #e8edf4;
+      border-radius: 50px;
+      padding: 7px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    /* Tabs / accordion sections below */
+    .pd-sections {
+      padding: 36px 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media (min-width: 800px) {
+      .pd-sections {
+        padding: 40px 40px 10px;
+      }
+    }
+
+    .pd-block {
+      border: 1.5px solid #e8edf4;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+
+    .pd-block-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 18px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      background: white;
+      transition: background 0.15s;
+      user-select: none;
+    }
+
+    .pd-block-head:hover {
+      background: #f4f8ff;
+    }
+
+    .pd-block-head .pd-icon {
+      font-size: 18px;
+      width: 26px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .pd-block-head .pd-chevron {
+      margin-left: auto;
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+      color: var(--navy);
+    }
+
+    .pd-block.open .pd-chevron {
+      transform: rotate(180deg);
+    }
+
+    .pd-block-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .pd-block.open .pd-block-body {
+      max-height: 600px;
+    }
+
+    .pd-block-inner {
+      padding: 4px 18px 18px 18px;
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .pd-block-inner ul {
+      margin: 8px 0 0 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pd-block-inner strong {
+      color: var(--navy);
+    }
+
+    /* related products */
+    .pd-related-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+      padding: 30px 20px 14px;
+    }
+
+    @media (min-width: 800px) {
+      .pd-related-title {
+        padding: 30px 40px 14px;
+      }
+    }
+
+    .pd-related-grid {
+      padding: 0 20px 30px;
+    }
+
+    @media (min-width: 800px) {
+      .pd-related-grid {
+        padding: 0 40px 36px;
+      }
+    }
+
     /* ===== WHY US ===== */
     .why-section {
       background: var(--navy);
@@ -748,10 +984,6 @@
 
     .why-card:hover {
       background: rgba(255, 255, 255, 0.15);
-    }
-
-    .why-icon {
-      font-size: 30px;
     }
 
     .why-title {
@@ -1014,7 +1246,7 @@
 
   <!-- HEADER -->
   <header class="top-header">
-    <a class="logo-wrap" href="#">
+    <a class="logo-wrap" href="#" onclick="return showHome();">
       <img class="logo-img" src="images/urallogo.png" alt="Ural – Pure and Organic" />
     </a>
 
@@ -1047,14 +1279,14 @@
   <!-- SUB NAV -->
   <nav class="sub-nav">
     <!-- Home: always blue box icon -->
-    <button class="nav-home-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <button class="nav-home-btn" onclick="showHome(); window.scrollTo({top:0,behavior:'smooth'})">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
       </svg>
     </button>
 
     <!-- Products: text shown, on hover → blue box + grid icon -->
-    <a class="nav-link" href="#products">
+    <a class="nav-link" href="#products" onclick="showHome();">
       <span class="nl-text">Products</span>
       <span class="nl-box">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
@@ -1067,7 +1299,7 @@
     </a>
 
     <!-- About Us: text shown, on hover → blue box + info icon -->
-    <a class="nav-link" href="#about">
+    <a class="nav-link" href="#about" onclick="showHome();">
       <span class="nl-text">About Us</span>
       <span class="nl-box">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
@@ -1079,7 +1311,7 @@
     </a>
 
     <!-- Contact: text shown, on hover → blue box + phone icon -->
-    <a class="nav-link" href="#contact">
+    <a class="nav-link" href="#contact" onclick="showHome();">
       <span class="nl-text">Contact</span>
       <span class="nl-box">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
@@ -1093,13 +1325,14 @@
   <!-- MAIN CARD -->
   <main class="main-card">
 
+    <!-- ============ HOME SECTIONS (hidden when product detail is open) ============ -->
+
     <!-- HERO SLIDER -->
-    <div class="hero-slider">
+    <div class="hero-slider home-section">
       <div class="slides-track" id="slidesTrack">
 
         <div class="slide active">
-          <div class="slide-bg" style="background-image:url('images/t9.jpeg');">
-          </div>
+          <div class="slide-bg" style="background-image:url('images/t9.jpeg');"></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">100% Cold-Pressed</div>
@@ -1145,8 +1378,8 @@
       </div>
     </div>
 
-    <!-- SEE PRODUCTS BY CATEGORY + PRODUCTS — connected as one section -->
-    <section class="cat-section reveal">
+    <!-- SEE PRODUCTS BY CATEGORY + PRODUCTS -->
+    <section class="cat-section reveal home-section">
       <div class="section-title">See Products by Category</div>
       <div class="section-sub">Choose a category to filter the products below</div>
       <div class="cat-chips-row" id="catChips">
@@ -1171,19 +1404,21 @@
       </div>
     </section>
 
-    <!-- PRODUCTS — flows directly below chips, no gap -->
-    <section class="section" id="products" style="padding-top:10px;">
+    <!-- PRODUCTS -->
+    <section class="section home-section" id="products" style="padding-top:10px;">
       <div class="active-cat-label" id="activeCatLabel">Showing: All Products</div>
       <div class="products-grid" id="productsGrid"></div>
     </section>
 
+    <!-- ============ PRODUCT DETAIL PAGE (reusable template, filled by JS) ============ -->
+    <div id="productDetail"></div>
+
     <!-- ABOUT / WHY US -->
-    <section class="why-section reveal" id="about">
+    <section class="why-section reveal home-section" id="about">
       <div class="section-title">Why Choose Ural?</div>
       <div class="section-sub">We believe food is medicine. Every product reflects that belief.</div>
       <div class="why-grid">
         <div class="why-card reveal">
-          <!-- <div class="why-icon">🌿</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#9AD872" class="bi bi-leaf-fill"
             viewBox="0 0 16 16">
             <path
@@ -1193,7 +1428,6 @@
           <div class="why-desc">No pesticides, no chemicals — only what nature intended for your family.</div>
         </div>
         <div class="why-card reveal">
-          <!-- <div class="why-icon">🏭</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#9AD872" class="bi bi-gear-fill"
             viewBox="0 0 16 16">
             <path
@@ -1203,7 +1437,6 @@
           <div class="why-desc">Stone-mill &amp; cold-press methods preserve all vital nutrients intact.</div>
         </div>
         <div class="why-card reveal">
-          <!-- <div class="why-icon">🚜</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#9AD872" class="bi bi-cart-check-fill"
             viewBox="0 0 16 16">
             <path
@@ -1213,7 +1446,6 @@
           <div class="why-desc">Sourced from trusted organic farmers across Tamil Nadu and India.</div>
         </div>
         <div class="why-card reveal">
-          <!-- <div class="why-icon">✅</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#9AD872" class="bi bi-check-square-fill"
             viewBox="0 0 16 16">
             <path
@@ -1226,14 +1458,13 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="section reveal" id="contact"
+    <section class="section reveal home-section" id="contact"
       style="background:var(--off-white); border-radius:0 0 var(--radius-xl) var(--radius-xl);">
       <div class="section-title">Get in Touch</div>
       <div class="section-sub">We'd love to hear from you</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:8px;">
         <a href="tel:+918838616093" class="contact-card"
           style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
-          <!-- <div style="font-size:24px;">📞</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--green)" class="bi bi-telephone"
             viewBox="0 0 16 16">
             <path
@@ -1246,7 +1477,6 @@
         </a>
         <a href="mailto:hello@ural.in" class="contact-card"
           style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
-          <!-- <div style="font-size:24px;">✉️</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--green)" class="bi bi-envelope"
             viewBox="0 0 16 16">
             <path
@@ -1260,7 +1490,6 @@
         <a href="https://maps.google.com/maps/place//data=!4m2!3m1!1s0x3ba85be19b3448a7:0xb73ffdc49f122afa?entry=s&sa=X&ved=2ahUKEwjL3aGdx_-UAxU3SmcHHQqMFOQQ4kB6BAgYEAA&hl=en"
           target="_blank" rel="noopener" class="contact-card"
           style="background:white;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px;border:1.5px solid #e0e8f0;">
-          <!-- <div style="font-size:24px;">📍</div> -->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--green)" class="bi bi-geo-alt"
             viewBox="0 0 16 16">
             <path
@@ -1309,10 +1538,10 @@
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
-        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</a>
-        <a href="#products">Products</a>
-        <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
+        <a href="#" onclick="showHome(); window.scrollTo({top:0,behavior:'smooth'}); return false;">Home</a>
+        <a href="#products" onclick="showHome();">Products</a>
+        <a href="#about" onclick="showHome();">About Us</a>
+        <a href="#contact" onclick="showHome();">Contact</a>
       </div>
       <div class="footer-col">
         <h4>Categories</h4>
@@ -1333,6 +1562,13 @@
 
   <script>
     // ===== PRODUCTS DATA =====
+    // Extra optional fields used by the product detail template:
+    //   tagline      – short line under the title
+    //   highlights   – small chips shown under tagline (e.g. "100% Natural")
+    //   description  – longer paragraph(s), used in the "Description" block
+    //   ingredients  – array of ingredient strings
+    //   preparation  – array of steps OR a paragraph string
+    //   benefits     – array of benefit strings (falls back to `uses` if absent)
     const products = [
       {
         id: 1,
@@ -1341,7 +1577,23 @@
         tag: 'oils',
         badge: '',
         icon: 'images/groil.png',
-        uses: 'Naturally rich in Vitamin E and healthy fats. Supports heart health, improves immunity, promotes healthy skin, and adds authentic flavour to every meal.'
+        uses: 'Naturally rich in Vitamin E and healthy fats. Supports heart health, improves immunity, promotes healthy skin, and adds authentic flavour to every meal.',
+        tagline: 'Stone-pressed the traditional way, retaining every bit of natural aroma and nutrition.',
+        highlights: ['100% Natural', 'Cold Pressed', 'No Preservatives', 'Chemical Free'],
+        description: 'Our Cold Pressed Groundnut Oil is extracted using the traditional wooden cold-press (marachekku) method at low temperatures, which preserves the natural aroma, colour and nutrients of the groundnuts. Unlike refined oils that undergo chemical processing and heat treatment, this oil retains its rich nutty flavour and golden hue, making it ideal for daily cooking, frying and seasoning.',
+        ingredients: ['100% Pure Groundnuts (Peanuts)', 'No additives, preservatives or chemicals'],
+        preparation: [
+          'Premium quality groundnuts are sun-dried and cleaned to remove impurities.',
+          'The cleaned groundnuts are loaded into a traditional wooden cold-press (marachekku).',
+          'Oil is extracted slowly at low temperature to retain natural nutrients and flavour.',
+          'The extracted oil is filtered naturally and bottled without any chemical treatment.'
+        ],
+        benefits: [
+          'Rich in Vitamin E and natural antioxidants that protect the skin and cells.',
+          'Contains healthy monounsaturated fats that support heart health.',
+          'Helps strengthen immunity and improves overall metabolism.',
+          'Adds a rich, authentic, nutty flavour to traditional dishes.'
+        ]
       },
       {
         id: 2,
@@ -1350,7 +1602,23 @@
         tag: 'oils',
         badge: '',
         icon: 'images/cooil.png',
-        uses: 'Packed with healthy medium-chain fatty acids that boost energy, support digestion, nourish skin and hair, and make everyday cooking healthier.'
+        uses: 'Packed with healthy medium-chain fatty acids that boost energy, support digestion, nourish skin and hair, and make everyday cooking healthier.',
+        tagline: 'Pure, fresh and aromatic — made from farm-fresh coconuts using the cold press method.',
+        highlights: ['100% Natural', 'Cold Pressed', 'Multi-Purpose', 'Chemical Free'],
+        description: 'Our Cold Pressed Coconut Oil is made from fresh, mature coconuts that are cold-pressed without heat or chemicals. This gentle process retains the natural aroma, taste and nutritional value of the coconut, resulting in a versatile oil suitable for cooking, hair care and skin care.',
+        ingredients: ['100% Fresh Coconuts', 'No additives or preservatives'],
+        preparation: [
+          'Fresh, mature coconuts are selected, husked and the kernel is extracted.',
+          'The coconut kernel (copra) is cold-pressed using a wooden cold-press.',
+          'Oil is extracted at low temperature to preserve nutrients and natural aroma.',
+          'The oil is filtered naturally and packed fresh without refining.'
+        ],
+        benefits: [
+          'Contains medium-chain triglycerides (MCTs) that provide quick, usable energy.',
+          'Supports healthy digestion and helps maintain a healthy gut.',
+          'Deeply nourishes skin and hair when used topically.',
+          'A versatile everyday oil for cooking, frying and tempering.'
+        ]
       },
       {
         id: 3,
@@ -1359,7 +1627,23 @@
         tag: 'oils',
         badge: '',
         icon: 'images/sesoil.jpeg',
-        uses: 'A traditional Ayurvedic oil rich in antioxidants. Supports bone strength, heart health, healthy joints, and is ideal for cooking and oil pulling.'
+        uses: 'A traditional Ayurvedic oil rich in antioxidants. Supports bone strength, heart health, healthy joints, and is ideal for cooking and oil pulling.',
+        tagline: 'A treasured Ayurvedic oil, cold-pressed from premium sesame seeds.',
+        highlights: ['100% Natural', 'Cold Pressed', 'Ayurvedic', 'Chemical Free'],
+        description: 'Cold Pressed Sesame Oil, also known as Nallennai, has been used for centuries in Ayurveda for cooking, massage and oil pulling. We use the traditional wooden cold-press method on premium quality sesame seeds to extract this nutrient-dense oil while retaining its distinctive flavour and therapeutic properties.',
+        ingredients: ['100% Pure Sesame Seeds', 'No additives or preservatives'],
+        preparation: [
+          'High quality sesame seeds are cleaned and sun-dried.',
+          'Seeds are cold-pressed in a wooden mill (marachekku) at low temperature.',
+          'The oil is naturally filtered to remove particles, retaining its natural goodness.',
+          'Bottled fresh without any chemical refining or bleaching.'
+        ],
+        benefits: [
+          'Rich in antioxidants like sesamol that help reduce inflammation.',
+          'Supports bone strength and healthy joints with natural calcium and minerals.',
+          'Promotes heart health by supporting healthy cholesterol levels.',
+          'Traditionally used for oil pulling and Ayurvedic massage (abhyanga).'
+        ]
       },
       {
         id: 5,
@@ -1368,7 +1652,29 @@
         tag: 'health-drinks',
         badge: '',
         icon: 'images/shm2.png',
-        uses: 'Made with 32 wholesome sprouted grains, millets, pulses, nuts and spices. Boosts energy, strengthens immunity, supports healthy growth, and keeps you active throughout the day.'
+        uses: 'Made with 32 wholesome sprouted grains, millets, pulses, nuts and spices. Boosts energy, strengthens immunity, supports healthy growth, and keeps you active throughout the day.',
+        tagline: 'A powerhouse of nutrition made from 32 sprouted grains, millets, pulses and nuts.',
+        highlights: ['32 Ingredients', 'Sprouted & Roasted', 'No Sugar Added', 'Kids & Adults'],
+        description: 'Our Sprouted Health Mix is a wholesome nutritional drink made by sprouting, roasting and grinding a careful blend of 32 grains, millets, pulses, nuts and spices. Sprouting increases the bio-availability of nutrients, making this an excellent everyday health drink for the entire family — from growing children to elderly members.',
+        ingredients: [
+          'Sprouted Ragi, Wheat, Jowar, Bajra & other millets',
+          'Sprouted Green Gram, Black Gram, Horse Gram & other pulses',
+          'Almonds, Cashews, Dry Dates and other nuts',
+          'Cardamom, Dry Ginger and other natural flavouring spices'
+        ],
+        preparation: [
+          'Selected grains, millets and pulses are washed, soaked and sprouted naturally.',
+          'Sprouted ingredients are sun-dried and individually roasted to enhance flavour.',
+          'Nuts and spices are dry roasted separately to retain their aroma.',
+          'All roasted ingredients are ground together into a fine, homogeneous powder.',
+          'To prepare: mix 2-3 tablespoons in warm milk or water and consume as a nutritious drink.'
+        ],
+        benefits: [
+          'Provides balanced nutrition from a wide variety of natural sources.',
+          'Sprouting improves digestibility and nutrient absorption.',
+          'Boosts immunity and supports healthy growth in children.',
+          'A convenient, energising start to the day for the whole family.'
+        ]
       },
       {
         id: 6,
@@ -1377,7 +1683,24 @@
         tag: 'health-drinks',
         badge: '',
         icon: 'images/n2.jpeg',
-        uses: 'Prepared with organic Nendran bananas, nuts and spices. Rich in natural energy, supports healthy weight gain, aids digestion, and is ideal for growing children and adults.'
+        uses: 'Prepared with organic Nendran bananas, nuts and spices. Rich in natural energy, supports healthy weight gain, aids digestion, and is ideal for growing children and adults.',
+        tagline: 'Naturally sweet energy drink made from organic Nendran bananas, nuts and spices.',
+        highlights: ['Organic Bananas', 'Naturally Sweet', 'No Added Sugar', 'Weight Gain Friendly'],
+        description: 'Our Nendran Banana Mix is prepared from sun-dried organic Nendran bananas, ground together with nuts and aromatic spices. Naturally sweet, it requires no added sugar and makes a delicious, energy-rich drink that is especially popular for healthy weight gain in children and adults.',
+        ingredients: ['Sun-dried Organic Nendran Banana', 'Almonds & Cashews', 'Cardamom', 'Dry Ginger Powder'],
+        preparation: [
+          'Ripe organic Nendran bananas are peeled, sliced and sun-dried thoroughly.',
+          'Dried banana slices are roasted lightly to enhance natural sweetness.',
+          'Nuts and spices are dry roasted separately for aroma.',
+          'All ingredients are ground together into a smooth powder.',
+          'To prepare: mix 2-3 tablespoons in warm milk and serve.'
+        ],
+        benefits: [
+          'Naturally sweet — no refined sugar needed.',
+          'Rich source of natural carbohydrates and energy.',
+          'Supports healthy and natural weight gain.',
+          'Aids digestion with natural fibre from bananas.'
+        ]
       },
       {
         id: 7,
@@ -1386,7 +1709,23 @@
         tag: 'health-drinks',
         badge: '',
         icon: 'images/p1.jpeg',
-        uses: 'A protein-rich blend of Poongar rice, moong dal and premium nuts. Supports muscle growth, improves stamina, enhances recovery, and keeps you fuller for longer.'
+        uses: 'A protein-rich blend of Poongar rice, moong dal and premium nuts. Supports muscle growth, improves stamina, enhances recovery, and keeps you fuller for longer.',
+        tagline: 'A protein-rich traditional blend of Poongar rice, moong dal and roasted nuts.',
+        highlights: ['High Protein', 'Traditional Recipe', 'No Sugar Added', 'Energy Booster'],
+        description: 'Our Rice & Dal Protein Mix combines the goodness of Poongar rice and moong dal with roasted nuts to create a naturally protein-rich health drink. This traditional South Indian recipe has been used for generations to support muscle health, stamina and sustained energy.',
+        ingredients: ['Poongar Rice', 'Moong Dal', 'Almonds & Cashews', 'Cardamom'],
+        preparation: [
+          'Poongar rice and moong dal are individually dry roasted until aromatic.',
+          'Nuts are roasted separately to preserve their crunch and flavour.',
+          'All roasted ingredients are ground together into a fine powder.',
+          'To prepare: cook 2-3 tablespoons in milk or water until it thickens slightly, then serve warm.'
+        ],
+        benefits: [
+          'Good plant-based protein source supports muscle growth.',
+          'Improves stamina and physical endurance.',
+          'Keeps you fuller for longer, supporting healthy eating habits.',
+          'A traditional, easily digestible source of energy.'
+        ]
       },
       {
         id: 8,
@@ -1395,7 +1734,23 @@
         tag: 'health-drinks',
         badge: '',
         icon: 'images/k1.png',
-        uses: 'Made from antioxidant-rich Black Kavuni Rice. Promotes heart health, improves digestion, boosts energy, and supports overall wellness naturally.'
+        uses: 'Made from antioxidant-rich Black Kavuni Rice. Promotes heart health, improves digestion, boosts energy, and supports overall wellness naturally.',
+        tagline: 'A nutrient-dense porridge mix made from antioxidant-rich Black Kavuni Rice.',
+        highlights: ['Black Rice', 'Antioxidant Rich', 'Heart Healthy', 'Naturally Gluten Free'],
+        description: 'Karuppu Kavuni (Black Rice) has long been valued in traditional medicine for its deep purple-black colour, which comes from naturally occurring anthocyanin antioxidants. Our Kavuni Rice Porridge Mix is made by roasting and grinding this special rice into a fine powder that can be cooked into a nourishing porridge.',
+        ingredients: ['Karuppu Kavuni (Black) Rice', 'A touch of Jaggery (optional pack available)'],
+        preparation: [
+          'Black Kavuni rice is cleaned and lightly roasted to enhance aroma.',
+          'The roasted rice is ground into a fine powder.',
+          'To prepare: cook 2-3 tablespoons in water or milk on low flame, stirring continuously until it thickens into a porridge.',
+          'Sweeten with jaggery or honey as per taste and serve warm.'
+        ],
+        benefits: [
+          'Rich in anthocyanin antioxidants that support overall wellness.',
+          'May help support healthy heart function.',
+          'Aids digestion and is naturally gluten-free.',
+          'Provides slow-releasing energy through the day.'
+        ]
       },
       {
         id: 9,
@@ -1404,7 +1759,23 @@
         tag: 'jaggery',
         badge: '',
         icon: 'images/j2.jpeg',
-        uses: 'A natural sweetener rich in iron and essential minerals. Improves digestion, boosts energy, helps cleanse the body, and is a healthier alternative to refined sugar.'
+        uses: 'A natural sweetener rich in iron and essential minerals. Improves digestion, boosts energy, helps cleanse the body, and is a healthier alternative to refined sugar.',
+        tagline: 'Traditionally made sugarcane jaggery — a wholesome, mineral-rich alternative to refined sugar.',
+        highlights: ['Chemical Free', 'Rich in Iron', 'Traditional Process', 'Unrefined'],
+        description: 'Our Natural Sugarcane Jaggery is made by slow-boiling fresh sugarcane juice in open pans over a wood fire, following age-old traditional methods. No chemicals or bleaching agents are used during processing, which means the natural minerals and golden colour of the jaggery are retained.',
+        ingredients: ['100% Pure Sugarcane Juice'],
+        preparation: [
+          'Fresh sugarcane is crushed to extract juice.',
+          'The juice is filtered to remove impurities.',
+          'It is slow-cooked in large open pans over a wood fire until it thickens.',
+          'The thickened jaggery is poured into moulds and allowed to set naturally.'
+        ],
+        benefits: [
+          'A natural source of iron and essential minerals.',
+          'Helps improve digestion when consumed after meals.',
+          'Provides natural, sustained energy unlike refined sugar.',
+          'Traditionally believed to help cleanse the body.'
+        ]
       },
       {
         id: 10,
@@ -1413,7 +1784,23 @@
         tag: 'jaggery',
         badge: '',
         icon: 'images/j3.jpeg',
-        uses: 'Loaded with natural minerals and antioxidants. Supports immunity, improves digestion, strengthens bones, and provides lasting energy without refined sugar.'
+        uses: 'Loaded with natural minerals and antioxidants. Supports immunity, improves digestion, strengthens bones, and provides lasting energy without refined sugar.',
+        tagline: 'A traditional Tamil superfood made from the sap of palm trees.',
+        highlights: ['Low Glycemic', 'Mineral Rich', 'Traditional Superfood', 'Unrefined'],
+        description: 'Karupatti, or Palm Jaggery, is made from the naturally collected sap of palm trees, slow-cooked into thick blocks using traditional methods. It has a distinctive caramel-like flavour and is considered a nutrient-dense superfood with a lower glycemic index compared to regular sugar.',
+        ingredients: ['100% Palm Sap (Padaneer)'],
+        preparation: [
+          'Fresh palm sap (Padaneer) is collected early in the morning from palm trees.',
+          'The sap is filtered to remove impurities.',
+          'It is slow-cooked in large vessels over a wood fire until it thickens into a paste.',
+          'The thickened jaggery is poured into moulds and allowed to cool and set.'
+        ],
+        benefits: [
+          'Rich in iron, potassium, and other essential minerals.',
+          'Supports immunity and overall vitality.',
+          'Helps strengthen bones with its natural calcium content.',
+          'Provides lasting energy without the sugar spike of refined sugar.'
+        ]
       },
       {
         id: 11,
@@ -1422,7 +1809,23 @@
         tag: 'health-drinks',
         badge: '',
         icon: 'images/u1.jpeg',
-        uses: 'Rich in calcium, protein and iron. Strengthens bones and muscles, improves stamina, supports joint health, and is an excellent traditional nutritional drink.'
+        uses: 'Rich in calcium, protein and iron. Strengthens bones and muscles, improves stamina, supports joint health, and is an excellent traditional nutritional drink.',
+        tagline: 'A traditional protein and calcium-rich porridge mix made from black urad dal.',
+        highlights: ['High in Calcium', 'Protein Rich', 'Traditional Recipe', 'Joint Friendly'],
+        description: 'Uluntham Kanji is a time-honoured Tamil recipe made from black urad dal (uluntham paruppu), known for its rich calcium and protein content. Our mix is made by roasting and grinding premium quality black urad dal into a fine powder that cooks easily into a wholesome porridge.',
+        ingredients: ['Black Urad Dal (Uluntham Paruppu)', 'A touch of Pepper & Cumin (optional)'],
+        preparation: [
+          'Black urad dal is cleaned and dry roasted until aromatic and slightly darkened.',
+          'The roasted dal is ground into a fine powder, optionally with pepper and cumin.',
+          'To prepare: cook 2-3 tablespoons in water on low flame, stirring until it forms a porridge.',
+          'Serve warm, optionally with a little ghee or jaggery.'
+        ],
+        benefits: [
+          'Excellent natural source of calcium for bone strength.',
+          'High in plant protein, supporting muscle health.',
+          'Helps improve stamina and supports joint health.',
+          'A traditional nutritional drink suitable for all ages.'
+        ]
       },
       {
         id: 12,
@@ -1431,7 +1834,23 @@
         tag: 'honey',
         badge: '',
         icon: 'images/h2.jpeg',
-        uses: 'Pure, raw hill honey packed with natural antioxidants and enzymes. Boosts immunity, soothes sore throats, aids digestion, and provides natural energy.'
+        uses: 'Pure, raw hill honey packed with natural antioxidants and enzymes. Boosts immunity, soothes sore throats, aids digestion, and provides natural energy.',
+        tagline: 'Raw, unprocessed honey collected from the forests of Coorg.',
+        highlights: ['Raw & Unprocessed', '100% Natural', 'No Added Sugar', 'Forest Sourced'],
+        description: 'Our Coorg Natural Hill Honey is collected from beehives in the lush forests of Coorg and is minimally processed to retain its natural enzymes, pollen and antioxidants. Unlike commercially processed honey, it is not heated to high temperatures, preserving its natural goodness and distinctive forest flavour.',
+        ingredients: ['100% Raw Forest Honey'],
+        preparation: [
+          'Honeycombs are carefully harvested from forest beehives in Coorg.',
+          'The honey is extracted naturally and strained to remove wax and debris.',
+          'No heating, blending or additives are used during processing.',
+          'The honey is bottled fresh, retaining its natural enzymes and aroma.'
+        ],
+        benefits: [
+          'Rich in natural antioxidants and enzymes.',
+          'Helps boost immunity and supports general wellness.',
+          'Soothes sore throats and coughs naturally.',
+          'A natural source of quick, usable energy.'
+        ]
       },
       {
         id: 13,
@@ -1440,7 +1859,23 @@
         tag: 'spices',
         badge: '',
         icon: 'images/sambar1.jpeg',
-        uses: 'A traditional blend of premium spices that enhances flavour, improves digestion, boosts metabolism, and brings authentic South Indian taste to every meal.'
+        uses: 'A traditional blend of premium spices that enhances flavour, improves digestion, boosts metabolism, and brings authentic South Indian taste to every meal.',
+        tagline: 'A traditional South Indian spice blend perfected for authentic, flavourful sambar.',
+        highlights: ['Stone Ground', 'No Preservatives', 'Authentic Recipe', 'Aromatic'],
+        description: 'Our Sambar Powder is prepared using a traditional family recipe, combining premium quality spices and lentils that are roasted to perfection and stone-ground for a rich, authentic flavour. It brings the true taste of South Indian sambar to your kitchen with minimal effort.',
+        ingredients: ['Coriander Seeds', 'Red Chillies', 'Toor Dal & Chana Dal', 'Cumin, Pepper, Fenugreek & Curry Leaves'],
+        preparation: [
+          'All spices and lentils are individually roasted to enhance their natural aroma.',
+          'Roasted ingredients are cooled and combined in the right proportions.',
+          'The blend is stone-ground into a fine, aromatic powder.',
+          'Packed fresh to retain flavour and aroma for longer.'
+        ],
+        benefits: [
+          'Enhances the flavour of sambar, rasam and curries.',
+          'Spice blend supports healthy digestion.',
+          'Contains spices known to boost metabolism.',
+          'Brings authentic, homemade taste to your cooking.'
+        ]
       },
       {
         id: 14,
@@ -1449,7 +1884,23 @@
         tag: 'spices',
         badge: '',
         icon: 'images/cori1.jpeg',
-        uses: 'Made from carefully selected coriander seeds. Supports healthy digestion, helps regulate blood sugar, and adds a refreshing aroma to your dishes.'
+        uses: 'Made from carefully selected coriander seeds. Supports healthy digestion, helps regulate blood sugar, and adds a refreshing aroma to your dishes.',
+        tagline: 'Pure, aromatic coriander powder made from carefully selected seeds.',
+        highlights: ['Single Ingredient', 'Stone Ground', 'No Additives', 'Aromatic'],
+        description: 'Our Coriander Powder is made from carefully selected, high-quality coriander seeds that are lightly roasted and stone-ground to preserve their natural aroma and flavour. A kitchen staple that adds a fresh, citrusy note to curries, gravies and spice blends.',
+        ingredients: ['100% Coriander Seeds'],
+        preparation: [
+          'Premium coriander seeds are cleaned to remove impurities.',
+          'Seeds are lightly roasted to enhance their natural aroma.',
+          'The roasted seeds are stone-ground into a fine powder.',
+          'Packed fresh to retain aroma and flavour.'
+        ],
+        benefits: [
+          'Supports healthy digestion when used regularly in cooking.',
+          'May help in maintaining healthy blood sugar levels.',
+          'Adds a fresh, aromatic flavour to a wide variety of dishes.',
+          'A versatile spice suitable for daily use.'
+        ]
       },
       {
         id: 15,
@@ -1458,7 +1909,23 @@
         tag: 'spices',
         badge: '',
         icon: 'images/chilli3.jpeg',
-        uses: 'Prepared from premium sun-dried chillies. Rich in antioxidants, enhances metabolism, adds vibrant colour, and delivers authentic spicy flavour.'
+        uses: 'Prepared from premium sun-dried chillies. Rich in antioxidants, enhances metabolism, adds vibrant colour, and delivers authentic spicy flavour.',
+        tagline: 'Vibrant, flavourful chilli powder made from premium sun-dried red chillies.',
+        highlights: ['Sun Dried Chillies', 'Stone Ground', 'No Colour Added', 'Authentic Spice Level'],
+        description: 'Our Chilli Powder is made from premium quality red chillies that are sun-dried naturally and stone-ground to a fine powder. No artificial colours or additives are used — the rich red colour and authentic spice level come purely from the chillies themselves.',
+        ingredients: ['100% Sun-Dried Red Chillies'],
+        preparation: [
+          'High quality red chillies are sun-dried naturally to remove moisture.',
+          'The dried chillies are cleaned and de-stemmed.',
+          'They are stone-ground into a fine, vibrant red powder.',
+          'Packed fresh to retain colour, aroma and spice level.'
+        ],
+        benefits: [
+          'Rich in natural antioxidants like capsaicin.',
+          'May help boost metabolism.',
+          'Adds vibrant natural colour without artificial dyes.',
+          'Delivers authentic, robust spicy flavour to dishes.'
+        ]
       },
       {
         id: 16,
@@ -1467,13 +1934,32 @@
         tag: 'spices',
         badge: '',
         icon: 'images/i1.jpeg',
-        uses: 'A nutritious blend of roasted lentils and spices. Rich in protein and fibre, enhances taste, supports digestion, and pairs perfectly with idli, dosa, and rice.'
+        uses: 'A nutritious blend of roasted lentils and spices. Rich in protein and fibre, enhances taste, supports digestion, and pairs perfectly with idli, dosa, and rice.',
+        tagline: 'A classic South Indian roasted lentil and spice blend, perfect with idli and dosa.',
+        highlights: ['High Protein', 'Stone Ground', 'No Preservatives', 'Ready to Serve'],
+        description: 'Idli Podi is a beloved South Indian condiment made from a blend of roasted lentils, sesame seeds and spices, ground to a coarse, flavourful powder. Simply mix with sesame or coconut oil and enjoy as an accompaniment to idli, dosa or rice.',
+        ingredients: ['Urad Dal & Chana Dal', 'Sesame Seeds', 'Red Chillies', 'Curry Leaves & Asafoetida'],
+        preparation: [
+          'Lentils, sesame seeds and chillies are individually roasted until aromatic.',
+          'Curry leaves and asafoetida are added for additional flavour.',
+          'All roasted ingredients are cooled and coarsely stone-ground.',
+          'To serve: mix with a little sesame or coconut oil and enjoy with idli, dosa or rice.'
+        ],
+        benefits: [
+          'Good source of plant protein from roasted lentils.',
+          'Adds fibre and supports healthy digestion.',
+          'Enhances the taste of idli, dosa and rice meals.',
+          'A convenient, ready-to-use traditional condiment.'
+        ]
       }
     ];
 
     let activeTag = 'all';
     let searchQuery = '';
 
+    /* ============================================================
+       PRODUCT GRID RENDERING (home page)
+       ============================================================ */
     function renderProducts() {
       const grid = document.getElementById('productsGrid');
       const label = document.getElementById('activeCatLabel');
@@ -1497,8 +1983,13 @@
         return;
       }
 
-      grid.innerHTML = filtered.map(p => `
-    <div class="product-card">
+      grid.innerHTML = filtered.map(p => productCardHTML(p)).join('');
+    }
+
+    /* Reusable product card markup (used in home grid AND related products) */
+    function productCardHTML(p) {
+      return `
+    <div class="product-card" onclick="openProduct(${p.id})">
       ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
       <div class="product-emoji">
         ${p.icon.startsWith('images/')
@@ -1511,12 +2002,152 @@
         <div class="product-weight">Pack size: ${p.weight}</div>
         <div class="product-uses"><strong>Benefits: </strong>${p.uses}</div>
       </div>
-    </div>
-  `).join('');
+    </div>`;
     }
 
-    // Category chip click (from the chips row — NO scroll, just filter in place)
+    /* ============================================================
+       PRODUCT DETAIL PAGE — single reusable template function
+       ============================================================ */
+    function productDetailHTML(p) {
+      const imageBlock = p.icon.startsWith('images/')
+        ? `<img src="${p.icon}" alt="${p.name}">`
+        : p.icon;
+
+      const highlightsHTML = (p.highlights || []).map(h => `<div class="pd-highlight-chip">✓ ${h}</div>`).join('');
+
+      const ingredientsHTML = Array.isArray(p.ingredients)
+        ? `<ul>${p.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>`
+        : `<p>${p.ingredients || 'Information coming soon.'}</p>`;
+
+      const preparationHTML = Array.isArray(p.preparation)
+        ? `<ul>${p.preparation.map(step => `<li>${step}</li>`).join('')}</ul>`
+        : `<p>${p.preparation || 'Information coming soon.'}</p>`;
+
+      const benefitsSource = p.benefits && p.benefits.length ? p.benefits : [p.uses];
+      const benefitsHTML = `<ul>${benefitsSource.map(b => `<li>${b}</li>`).join('')}</ul>`;
+
+      const descriptionHTML = `<p>${p.description || p.uses}</p>`;
+
+      // Related products: same category, excluding current product
+      const related = products.filter(rp => rp.tag === p.tag && rp.id !== p.id).slice(0, 4);
+      const relatedHTML = related.length
+        ? `
+          <div class="pd-related-title">You may also like</div>
+          <div class="products-grid pd-related-grid">
+            ${related.map(rp => productCardHTML(rp)).join('')}
+          </div>`
+        : '';
+
+      return `
+        <button class="pd-back" onclick="closeProduct()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+          Back to Products
+        </button>
+
+        <div class="pd-top">
+          <div class="pd-image-wrap">${imageBlock}</div>
+          <div class="pd-info">
+            <div class="pd-cat-tag">${p.tag.replace('-', ' ')}</div>
+            <div class="pd-title">${p.name}</div>
+            <div class="pd-weight">Pack size: ${p.weight}</div>
+            <div class="pd-tagline">${p.tagline || p.uses}</div>
+            <div class="pd-highlight-row">${highlightsHTML}</div>
+          </div>
+        </div>
+
+        <div class="pd-sections">
+
+          <div class="pd-block open" data-block="description">
+            <div class="pd-block-head" onclick="togglePdBlock(this)">
+              <span class="pd-icon">📝</span>
+              <span>Description</span>
+              <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="pd-block-body">
+              <div class="pd-block-inner">${descriptionHTML}</div>
+            </div>
+          </div>
+
+          <div class="pd-block" data-block="ingredients">
+            <div class="pd-block-head" onclick="togglePdBlock(this)">
+              <span class="pd-icon">🌾</span>
+              <span>Ingredients</span>
+              <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="pd-block-body">
+              <div class="pd-block-inner">${ingredientsHTML}</div>
+            </div>
+          </div>
+
+          <div class="pd-block" data-block="preparation">
+            <div class="pd-block-head" onclick="togglePdBlock(this)">
+              <span class="pd-icon">👩‍🍳</span>
+              <span>How It's Made / Used</span>
+              <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="pd-block-body">
+              <div class="pd-block-inner">${preparationHTML}</div>
+            </div>
+          </div>
+
+          <div class="pd-block" data-block="benefits">
+            <div class="pd-block-head" onclick="togglePdBlock(this)">
+              <span class="pd-icon">💚</span>
+              <span>Benefits</span>
+              <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="pd-block-body">
+              <div class="pd-block-inner">${benefitsHTML}</div>
+            </div>
+          </div>
+
+        </div>
+
+        ${relatedHTML}
+      `;
+    }
+
+    function togglePdBlock(headEl) {
+      const block = headEl.closest('.pd-block');
+      block.classList.toggle('open');
+    }
+
+    /* Open a product's detail page */
+    function openProduct(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
+      const detailEl = document.getElementById('productDetail');
+      detailEl.innerHTML = productDetailHTML(product);
+      detailEl.classList.add('active');
+
+      // hide home sections
+      document.querySelectorAll('.home-section').forEach(el => el.classList.add('hidden-by-detail'));
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Close detail page, return to home/products grid */
+    function closeProduct() {
+      document.getElementById('productDetail').classList.remove('active');
+      document.querySelectorAll('.home-section').forEach(el => el.classList.remove('hidden-by-detail'));
+      setTimeout(() => document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+
+    /* Return to home (also closes detail page if open) */
+    function showHome() {
+      document.getElementById('productDetail').classList.remove('active');
+      document.querySelectorAll('.home-section').forEach(el => el.classList.remove('hidden-by-detail'));
+      return true;
+    }
+
+    /* ============================================================
+       CATEGORY / SEARCH FILTERING
+       ============================================================ */
     function filterChip(tag, chipEl) {
+      showHome();
       activeTag = tag;
       searchQuery = '';
       document.getElementById('searchInput').value = '';
@@ -1526,12 +2157,11 @@
       renderProducts();
     }
 
-    // Called from slider CTAs / dropdown / footer links — filters AND scrolls to products
     function goToCategory(tag) {
+      showHome();
       activeTag = tag;
       searchQuery = '';
       document.getElementById('searchInput').value = '';
-      // Sync chips
       const tagToText = { all: 'All', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices' };
       document.querySelectorAll('.cat-chip-btn').forEach(b => {
         b.classList.toggle('active', b.querySelector('span:last-child').textContent === tagToText[tag]);
@@ -1548,14 +2178,13 @@
       document.getElementById('catLabel').textContent = names[tag] || 'All Categories';
     }
 
-    // Search
     function handleSearch() {
+      showHome();
       searchQuery = document.getElementById('searchInput').value.trim();
       renderProducts();
       if (searchQuery) setTimeout(() => document.getElementById('products').scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
     }
 
-    // Dropdown
     function selectCat(tag, labelText) {
       document.getElementById('catLabel').textContent = labelText;
       document.getElementById('catPanel').classList.remove('open');
@@ -1572,7 +2201,9 @@
       document.getElementById('catTrigger').classList.remove('open');
     });
 
-    // Slider
+    /* ============================================================
+       HERO SLIDER
+       ============================================================ */
     let currentSlide = 0;
     const totalSlides = 3;
     let autoInterval;
