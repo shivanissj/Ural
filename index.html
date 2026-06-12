@@ -1031,9 +1031,6 @@
           <a onclick="selectCat('jaggery','Jaggery')"><span class="cat-icon-sm">🍫</span> Jaggery</a>
           <a onclick="selectCat('honey','Honey')"><span class="cat-icon-sm">🍯</span> Honey</a>
           <a onclick="selectCat('spices','Spices')"><span class="cat-icon-sm">🌶️</span> Spices</a>
-          <a onclick="selectCat('grains','Grains &amp; Pulses')"><span class="cat-icon-sm">🌾</span> Grains &amp;
-            Pulses</a>
-          <a onclick="selectCat('dry-fruits','Dry Fruits')"><span class="cat-icon-sm">🥜</span> Dry Fruits</a>
         </div>
       </div>
       <div class="search-divider"></div>
@@ -1171,12 +1168,6 @@
         <button class="cat-chip-btn" onclick="filterChip('spices',this)">
           <div class="cat-chip-icon"><span>🌶️</span></div><span>Spices</span>
         </button>
-        <button class="cat-chip-btn" onclick="filterChip('grains',this)">
-          <div class="cat-chip-icon"><span>🌾</span></div><span>Grains</span>
-        </button>
-        <button class="cat-chip-btn" onclick="filterChip('dry-fruits',this)">
-          <div class="cat-chip-icon"><span>🥜</span></div><span>Dry Fruits</span>
-        </button>
       </div>
     </section>
 
@@ -1292,7 +1283,7 @@
       <div class="footer-brand">
         <div class="footer-logo-text">Ural</div>
         <div class="footer-tagline">Pure and Organic — delivering nature's finest oils, health drinks, jaggery and more
-          since 2023.</div>
+          since 2022.</div>
         <div class="footer-socials">
           <a class="social-btn" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
               fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -1333,7 +1324,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2023 Ural Pure and Organic. All rights reserved.</span>
+      <span>© 2022 Ural Pure and Organic. All rights reserved.</span>
       <span>Made with ❤️ in Tamil Nadu</span>
     </div>
   </footer>
@@ -1343,24 +1334,141 @@
   <script>
     // ===== PRODUCTS DATA =====
     const products = [
-      { id: 1, name: 'Cold Pressed Groundnut Oil', weight: '500ml / 1L', tag: 'oils', badge: 'Best Seller', icon: 'images/groil.png', uses: 'Rich in Vitamin E and antioxidants. Supports heart health, boosts immunity, and enhances the flavour of everyday cooking without losing nutrients.' },
-      { id: 2, name: 'Cold Pressed Coconut Oil', weight: '500ml', tag: 'oils', badge: 'Organic', icon: 'images/cooil.png', uses: 'Excellent for skin, hair and cooking. Contains medium-chain fatty acids that aid digestion and provide quick energy to the body.' },
-      { id: 3, name: 'Cold Pressed Sesame Oil', weight: '500ml', tag: 'oils', badge: '', icon: 'images/sesoil.jpeg', uses: 'Known as the king of oils in Ayurveda. Anti-inflammatory properties, supports bone health and is ideal for oil pulling.' },
-      { id: 4, name: 'Wood Pressed Mustard Oil', weight: '500ml', tag: 'oils', badge: '', icon: '🟡', uses: 'Naturally pungent and warming. Aids circulation, repels insects on skin, and is traditionally used in massage and cooking.' },
-      { id: 5, name: 'Moringa Health Drink', weight: '200g', tag: 'health-drinks', badge: 'New', icon: '🥤', uses: 'Called the miracle tree — moringa is packed with iron, calcium and vitamins A, C &amp; E. Boosts energy and strengthens immunity.' },
-      { id: 6, name: 'Turmeric Latte Mix', weight: '150g', tag: 'health-drinks', badge: '', icon: '🌼', uses: 'Golden milk blend with turmeric, pepper and ginger. Powerful anti-inflammatory, aids sleep and supports liver detox.' },
-      { id: 7, name: 'Ashwagandha Herbal Blend', weight: '200g', tag: 'health-drinks', badge: '', icon: '💪', uses: 'An adaptogenic herb that reduces stress and anxiety, improves focus, builds stamina and supports hormonal balance.' },
-      { id: 8, name: 'Nannari Sharbat Mix', weight: '200g', tag: 'health-drinks', badge: '', icon: '🍃', uses: 'A traditional South Indian cooling drink. Purifies blood, reduces body heat, and relieves urinary disorders naturally.' },
-      { id: 9, name: 'Palm Jaggery Powder', weight: '500g', tag: 'jaggery', badge: 'Pure', icon: '🍫', uses: 'Rich in iron and minerals. A low glycemic index sweetener that aids digestion, prevents anaemia and cleans the respiratory tract.' },
-      { id: 10, name: 'Sugarcane Jaggery Block', weight: '1kg', tag: 'jaggery', badge: '', icon: '🟫', uses: 'Unrefined sugar with minerals intact. Helps in detoxing the body, improves digestion and is a healthier replacement for white sugar.' },
-      { id: 11, name: 'Forest Honey (Raw)', weight: '500g', tag: 'honey', badge: 'Wild', icon: '🍯', uses: 'Unprocessed wild honey with natural enzymes and pollen. Antibacterial, soothes coughs, boosts immunity and heals wounds.' },
-      { id: 12, name: 'Nilgiri Blossom Honey', weight: '300g', tag: 'honey', badge: '', icon: '🌺', uses: 'Harvested from Nilgiri flower fields. Light floral flavour, rich in antioxidants and promotes digestive health.' },
-      { id: 13, name: 'Organic Turmeric Powder', weight: '200g', tag: 'spices', badge: '', icon: '🌶️', uses: 'High curcumin content. Anti-inflammatory and antioxidant. Daily use supports joint health, immunity and skin glow.' },
-      { id: 14, name: 'Black Pepper Whole', weight: '100g', tag: 'spices', badge: '', icon: '🫙', uses: 'Enhances nutrient absorption (especially curcumin). Aids digestion, has antimicrobial properties and improves metabolism.' },
-      { id: 15, name: 'Organic Red Rice', weight: '1kg', tag: 'grains', badge: '', icon: '🌾', uses: 'High in anthocyanins and fibre. Manages blood sugar, supports gut health, aids weight management and is rich in iron.' },
-      { id: 16, name: 'Horse Gram (Kulthi Dal)', weight: '500g', tag: 'grains', badge: '', icon: '🫘', uses: 'One of the highest protein legumes. Helps dissolve kidney stones, controls diabetes and is used in traditional medicine.' },
-      { id: 17, name: 'Premium Cashews W320', weight: '250g', tag: 'dry-fruits', badge: '', icon: '🥜', uses: 'Rich in magnesium and zinc. Supports brain function, bone density, heart health and provides sustained energy.' },
-      { id: 18, name: 'Organic Almonds', weight: '250g', tag: 'dry-fruits', badge: '', icon: '🌰', uses: 'Loaded with Vitamin E and healthy fats. Improves memory, regulates blood sugar, and supports skin health naturally.' },
+      {
+        id: 1,
+        name: 'Cold Pressed Groundnut Oil',
+        weight: '500ml / 1L',
+        tag: 'oils',
+        badge: '',
+        icon: 'images/groil.png',
+        uses: 'Naturally rich in Vitamin E and healthy fats. Supports heart health, improves immunity, promotes healthy skin, and adds authentic flavour to every meal.'
+      },
+      {
+        id: 2,
+        name: 'Cold Pressed Coconut Oil',
+        weight: '500ml',
+        tag: 'oils',
+        badge: '',
+        icon: 'images/cooil.png',
+        uses: 'Packed with healthy medium-chain fatty acids that boost energy, support digestion, nourish skin and hair, and make everyday cooking healthier.'
+      },
+      {
+        id: 3,
+        name: 'Cold Pressed Sesame Oil',
+        weight: '500ml',
+        tag: 'oils',
+        badge: '',
+        icon: 'images/sesoil.jpeg',
+        uses: 'A traditional Ayurvedic oil rich in antioxidants. Supports bone strength, heart health, healthy joints, and is ideal for cooking and oil pulling.'
+      },
+      {
+        id: 5,
+        name: 'Sprouted Health Mix',
+        weight: '250/500gm',
+        tag: 'health-drinks',
+        badge: '',
+        icon: 'images/shm2.png',
+        uses: 'Made with 32 wholesome sprouted grains, millets, pulses, nuts and spices. Boosts energy, strengthens immunity, supports healthy growth, and keeps you active throughout the day.'
+      },
+      {
+        id: 6,
+        name: 'Nendran Banana Mix',
+        weight: '200gm',
+        tag: 'health-drinks',
+        badge: '',
+        icon: 'images/n2.jpeg',
+        uses: 'Prepared with organic Nendran bananas, nuts and spices. Rich in natural energy, supports healthy weight gain, aids digestion, and is ideal for growing children and adults.'
+      },
+      {
+        id: 7,
+        name: 'Rice & Dal Protein Mix',
+        weight: '200gm',
+        tag: 'health-drinks',
+        badge: '',
+        icon: 'images/p1.jpeg',
+        uses: 'A protein-rich blend of Poongar rice, moong dal and premium nuts. Supports muscle growth, improves stamina, enhances recovery, and keeps you fuller for longer.'
+      },
+      {
+        id: 8,
+        name: 'Karuppu Kavuni Rice Porridge Mix',
+        weight: '250/500gm',
+        tag: 'health-drinks',
+        badge: '',
+        icon: 'images/k1.png',
+        uses: 'Made from antioxidant-rich Black Kavuni Rice. Promotes heart health, improves digestion, boosts energy, and supports overall wellness naturally.'
+      },
+      {
+        id: 9,
+        name: 'Natural Sugarcane Jaggery',
+        weight: '500/1000gm',
+        tag: 'jaggery',
+        badge: '',
+        icon: 'images/j2.jpeg',
+        uses: 'A natural sweetener rich in iron and essential minerals. Improves digestion, boosts energy, helps cleanse the body, and is a healthier alternative to refined sugar.'
+      },
+      {
+        id: 10,
+        name: 'Natural Palm Jaggery (Karupatti)',
+        weight: '500/1000gm',
+        tag: 'jaggery',
+        badge: '',
+        icon: 'images/j3.jpeg',
+        uses: 'Loaded with natural minerals and antioxidants. Supports immunity, improves digestion, strengthens bones, and provides lasting energy without refined sugar.'
+      },
+      {
+        id: 11,
+        name: 'Uluntham Kanji Mix (Black Urad Dal)',
+        weight: '250/500gm',
+        tag: 'health-drinks',
+        badge: '',
+        icon: 'images/u1.jpeg',
+        uses: 'Rich in calcium, protein and iron. Strengthens bones and muscles, improves stamina, supports joint health, and is an excellent traditional nutritional drink.'
+      },
+      {
+        id: 12,
+        name: 'Coorg Natural Hill Honey',
+        weight: '250gm',
+        tag: 'honey',
+        badge: '',
+        icon: 'images/h2.jpeg',
+        uses: 'Pure, raw hill honey packed with natural antioxidants and enzymes. Boosts immunity, soothes sore throats, aids digestion, and provides natural energy.'
+      },
+      {
+        id: 13,
+        name: 'Sambar Powder',
+        weight: '100/250gm',
+        tag: 'spices',
+        badge: '',
+        icon: 'images/sambar1.jpeg',
+        uses: 'A traditional blend of premium spices that enhances flavour, improves digestion, boosts metabolism, and brings authentic South Indian taste to every meal.'
+      },
+      {
+        id: 14,
+        name: 'Coriander Powder',
+        weight: '100/250gm',
+        tag: 'spices',
+        badge: '',
+        icon: 'images/cori1.jpeg',
+        uses: 'Made from carefully selected coriander seeds. Supports healthy digestion, helps regulate blood sugar, and adds a refreshing aroma to your dishes.'
+      },
+      {
+        id: 15,
+        name: 'Chilli Powder',
+        weight: '100/250gm',
+        tag: 'spices',
+        badge: '',
+        icon: 'images/chilli3.jpeg',
+        uses: 'Prepared from premium sun-dried chillies. Rich in antioxidants, enhances metabolism, adds vibrant colour, and delivers authentic spicy flavour.'
+      },
+      {
+        id: 16,
+        name: 'Idli Podi',
+        weight: '100/250gm',
+        tag: 'spices',
+        badge: '',
+        icon: 'images/i1.jpeg',
+        uses: 'A nutritious blend of roasted lentils and spices. Rich in protein and fibre, enhances taste, supports digestion, and pairs perfectly with idli, dosa, and rice.'
+      }
     ];
 
     let activeTag = 'all';
@@ -1380,7 +1488,7 @@
         );
       }
 
-      const catNames = { all: 'All Products', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices', grains: 'Grains & Pulses', 'dry-fruits': 'Dry Fruits' };
+      const catNames = { all: 'All Products', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices' };
       const suffix = searchQuery ? ` matching "${searchQuery}"` : '';
       label.textContent = `Showing: ${catNames[activeTag] || 'All Products'}${suffix} (${filtered.length} item${filtered.length !== 1 ? 's' : ''})`;
 
@@ -1424,7 +1532,7 @@
       searchQuery = '';
       document.getElementById('searchInput').value = '';
       // Sync chips
-      const tagToText = { all: 'All', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices', grains: 'Grains', 'dry-fruits': 'Dry Fruits' };
+      const tagToText = { all: 'All', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices' };
       document.querySelectorAll('.cat-chip-btn').forEach(b => {
         b.classList.toggle('active', b.querySelector('span:last-child').textContent === tagToText[tag]);
       });
@@ -1436,7 +1544,7 @@
     }
 
     function syncDropdownLabel(tag) {
-      const names = { all: 'All Categories', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices', grains: 'Grains & Pulses', 'dry-fruits': 'Dry Fruits' };
+      const names = { all: 'All Categories', oils: 'Oils', 'health-drinks': 'Health Drinks', jaggery: 'Jaggery', honey: 'Honey', spices: 'Spices' };
       document.getElementById('catLabel').textContent = names[tag] || 'All Categories';
     }
 
