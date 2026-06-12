@@ -1268,6 +1268,7 @@
       <div class="search-divider"></div>
       <input type="text" placeholder="Search for Items..." id="searchInput" oninput="handleSearch()" />
       <button class="search-btn">
+        <!--search icon-->
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -1280,12 +1281,13 @@
   <nav class="sub-nav">
     <!-- Home: always blue box icon -->
     <button class="nav-home-btn" onclick="showHome(); window.scrollTo({top:0,behavior:'smooth'})">
+      <!--home icon-->
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
       </svg>
     </button>
 
-    <!-- Products: text shown, on hover → blue box + grid icon -->
+    <!-- Products-->
     <a class="nav-link" href="#products" onclick="showHome();">
       <span class="nl-text">Products</span>
       <span class="nl-box">
@@ -1298,7 +1300,7 @@
       </span>
     </a>
 
-    <!-- About Us: text shown, on hover → blue box + info icon -->
+    <!-- About Us-->
     <a class="nav-link" href="#about" onclick="showHome();">
       <span class="nl-text">About Us</span>
       <span class="nl-box">
@@ -1310,7 +1312,7 @@
       </span>
     </a>
 
-    <!-- Contact: text shown, on hover → blue box + phone icon -->
+    <!-- Contact-->
     <a class="nav-link" href="#contact" onclick="showHome();">
       <span class="nl-text">Contact</span>
       <span class="nl-box">
@@ -1344,8 +1346,7 @@
         </div>
 
         <div class="slide">
-          <div class="slide-bg"
-            style="background-image:url('https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=900&q=80');"></div>
+          <div class="slide-bg" style="background-image:url('images/ss2.jpeg');"></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">Ancient Sweetness</div>
@@ -1356,8 +1357,7 @@
         </div>
 
         <div class="slide">
-          <div class="slide-bg"
-            style="background-image:url('https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=900&q=80');">
+          <div class="slide-bg" style="background-image:url('images/ss6.jpeg');">
           </div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
@@ -1367,7 +1367,31 @@
             <a class="slide-cta" onclick="goToCategory('health-drinks')">Explore Drinks →</a>
           </div>
         </div>
+        <div class="slide">
+          <div class="slide-bg" style="background-image:url('images/ss1.jpeg');">
+          </div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">100% AUTHENTIC SPICES</div>
+            <div class="slide-title">Nature's Finest Spices for Every Kitchen</div>
+            <div class="slide-sub">Freshly ground sambar powder, coriander powder, chilli powder & idli podi — <br>rich
+              in aroma, flavour, and traditional goodness.</div>
+            <a class="slide-cta" onclick="goToCategory('spices')">Explore Spices →</a>
+          </div>
+        </div>
 
+        <div class="slide">
+          <div class="slide-bg" style="background-image:url('images/ss3.jpeg');">
+          </div>
+          <div class="slide-overlay"></div>
+          <div class="slide-content">
+            <div class="slide-eyebrow">100% PURE COORG HONEY</div>
+            <div class="slide-title">Nature's Sweetness from the Hills</div>
+            <div class="slide-sub">Pure, raw, unprocessed Coorg honey — naturally rich in flavour, aroma, and essential
+              nutrients.</div>
+            <a class="slide-cta" onclick="goToCategory('honey')">Explore Honey →</a>
+          </div>
+        </div>
       </div>
       <button class="slider-arrow prev" onclick="prevSlide()">&#8249;</button>
       <button class="slider-arrow next" onclick="nextSlide()">&#8250;</button>
@@ -1375,6 +1399,9 @@
         <div class="dot active" onclick="goSlide(0)"></div>
         <div class="dot" onclick="goSlide(1)"></div>
         <div class="dot" onclick="goSlide(2)"></div>
+        <div class="dot" onclick="goSlide(3)"></div>
+        <div class="dot" onclick="goSlide(4)"></div>
+
       </div>
     </div>
 
@@ -2205,7 +2232,9 @@
        HERO SLIDER
        ============================================================ */
     let currentSlide = 0;
-    const totalSlides = 3;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const totalSlides = slides.length;
     let autoInterval;
     function goSlide(n) {
       currentSlide = n;
