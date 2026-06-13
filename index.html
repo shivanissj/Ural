@@ -305,6 +305,10 @@
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      background: #0d3f82;
+      box-shadow:
+        0 8px 25px rgba(13, 63, 130, .25),
+        0 2px 8px rgba(0, 0, 0, .12);
     }
 
     .slides-track {
@@ -319,6 +323,7 @@
       display: flex;
       align-items: center;
       overflow: hidden;
+      background: transparent;
     }
 
     .slide-bg {
@@ -326,6 +331,7 @@
       inset: 0;
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       transform: scale(1.05);
       transition: transform 8s ease;
     }
@@ -345,7 +351,8 @@
       z-index: 2;
       padding: 32px 26px;
       color: white;
-      max-width: 62%;
+      max-width: 100%;
+
     }
 
     .slide-eyebrow {
@@ -355,6 +362,7 @@
       text-transform: uppercase;
       color: #a8d8aa;
       margin-bottom: 7px;
+
     }
 
     .slide-title {
@@ -1168,6 +1176,26 @@
         gap: 4px;
       }
 
+      .slide {
+        min-height: auto;
+        height: 300px;
+        /* Adjust this value */
+        max-height: 190px;
+        overflow: hidden;
+      }
+
+      .slide-bg {
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        transform: none;
+        border-radius: inherit;
+      }
+
+      .slide.active .slide-bg {
+        transform: none;
+      }
+
       .cat-dropdown {
         font-size: 11px;
         padding: 8px 2px;
@@ -1334,7 +1362,7 @@
       <div class="slides-track" id="slidesTrack">
 
         <div class="slide active">
-          <div class="slide-bg" style="background-image:url('images/t9.jpeg');"></div>
+          <div class="slide-bg" style="background-image:url('images/t9.png');"></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">100% Cold-Pressed</div>
@@ -1346,7 +1374,7 @@
         </div>
 
         <div class="slide">
-          <div class="slide-bg" style="background-image:url('images/ss2.jpeg');"></div>
+          <div class="slide-bg" style="background-image:url('images/ss2.png');"></div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">Ancient Sweetness</div>
@@ -1357,7 +1385,7 @@
         </div>
 
         <div class="slide">
-          <div class="slide-bg" style="background-image:url('images/ss6.jpeg');">
+          <div class="slide-bg" style="background-image:url('images/ss6.png');">
           </div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
@@ -1368,20 +1396,19 @@
           </div>
         </div>
         <div class="slide">
-          <div class="slide-bg" style="background-image:url('images/ss1.jpeg');">
+          <div class="slide-bg" style="background-image:url('images/ss1.png');">
           </div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
             <div class="slide-eyebrow">100% AUTHENTIC SPICES</div>
             <div class="slide-title">Nature's Finest Spices for Every Kitchen</div>
-            <div class="slide-sub">Freshly ground sambar powder, coriander powder, chilli powder & idli podi — <br>rich
-              in aroma, flavour, and traditional goodness.</div>
+            <div class="slide-sub">Freshly ground sambar powder, coriander powder, chilli powder & idli podi.</div>
             <a class="slide-cta" onclick="goToCategory('spices')">Explore Spices →</a>
           </div>
         </div>
 
         <div class="slide">
-          <div class="slide-bg" style="background-image:url('images/ss3.jpeg');">
+          <div class="slide-bg" style="background-image:url('images/ss3.png');">
           </div>
           <div class="slide-overlay"></div>
           <div class="slide-content">
